@@ -102,7 +102,7 @@ function Body() {
              
                   {/* { onMindYours && <Onyourmind data={onMindYours}/> } */}
                 
-      {onMindYours.length?<>
+      {onMindYours.length==0?<>
                                            <Onyourmind data={onMindYours}/>
                                           <Toprestaurantchain data={toprestaurant}  title={cityTitles}/>
                                       </>:''}
