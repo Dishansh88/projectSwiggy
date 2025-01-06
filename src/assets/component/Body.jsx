@@ -36,7 +36,7 @@ function Body() {
             // console.log(data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants||data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
             let mainData=data?.data?.cards.find((data)=>data?.card?.card?.id=="top_brands_for_you")?.card.card.gridElements.infoWithStyle.restaurants
             let mainData2=data?.data?.cards.find((data)=>data?.card?.card?.id=="restaurant_grid_listing")?.card.card.gridElements.infoWithStyle.restaurants
-            setToprestaurant(mainData2|| mainData)
+            setToprestaurant(mainData2|| mainData||[])
             let data2=data?.data?.cards.find((data)=>data?.card?.card?.id=="whats_on_your_mind")?.card?.card?.gridElements?.infoWithStyle?.info
            setOnYoursMind(data2 || [])
         
@@ -102,7 +102,7 @@ function Body() {
              
                   {/* { onMindYours && <Onyourmind data={onMindYours}/> } */}
                 
-      {onMindYours.length==0?<>
+      {onMindYours.length?<>
                                            <Onyourmind data={onMindYours}/>
                                           <Toprestaurantchain data={toprestaurant}  title={cityTitles}/>
                                       </>:''}
