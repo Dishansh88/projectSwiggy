@@ -1,0 +1,2 @@
+export let nonveg='https://www.pngkey.com/png/full/245-2459071_non-veg-icon-non-veg-symbol-png.png'
+export let veg='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMteAKdX-P1OY8MjE5Li9YDZJAXI_hsAZ47OWYhh_HCCK76_N_E1hr1QUgnGPIIk8RmB8&usqp=CAU'
