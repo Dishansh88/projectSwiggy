@@ -30,13 +30,12 @@ function App() {
   function setgeo()
   {
             let data=JSON.parse(localStorage.getItem('loc'))
-           
+      
             setYourPlace(
               data ||
-              {
-                 lat : "22.057437",
-                 lng: "78.9381729"
-              }
+              
+                {lat: '23.2599333', lng: '77.412615'}
+              
             )
             
         

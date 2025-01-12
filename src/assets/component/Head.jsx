@@ -9,6 +9,7 @@ import Signin from './Signin'
 function Head() {
  const visible=useSelector((state)=>state.toogleSlice.toggleBar)
   const [search,setsearch]=useState([])
+  const [rfid,setRfid]=useState()
   const {yourPlace,setYourPlace,setInitialgeo,initialgeo}=useContext(Visible)
   const [myAdress,setMyadress]=useState()
   const cartData=useSelector((state)=>state.cartSlice.cartItem)
@@ -60,8 +61,14 @@ function Head() {
         
           
     }
+    function getCity()
+    {
+            Setlatlan(rfid)
+    }
     async function Setlatlan(id)
     {
+
+      
               let res= await fetch(`${import.meta.env.VITE_BASE_URL}/misc/address-recommend?place_id=${id}`)
               let data=await res.json();
               // console.log(data?.data[0]?.formatted_address)
@@ -89,8 +96,11 @@ function Head() {
                <div className=' flex flex-col  w-[55%] m-4 gap-3'>
               
                           <i class="fi fi-br-cross cursor-pointer" onClick={leftSlide}></i>
-                            <input type='text'  className='border rounded-2xl w-[100%] focus:outline-none focus:shadow-md p-5 ' onChange={(e)=>Searchcity(e.target.value)}/>
-                          {  search && <p className='text-gray-400 '>Recent searches</p>}
+                           <div className='relative m-3'>
+                               <input type='text'   className='border rounded-2xl w-[100%] absolute focus:outline-none focus:shadow-md p-5 z-index:20 ' onChange={(e)=>Searchcity(e.target.value)}/> 
+                           </div>
+                            
+                          {  search && <p className='text-gray-400 m-4 '>Recent searches</p>}
                                     <div className=' '>
                                            <ul className=''>
                                               { 
@@ -143,9 +153,10 @@ function Head() {
             </div>
                 </Link>
                    <div className='flex items-center gap-2 md:gap-3 cursor-pointer hover:text-orange-500 'onClick={leftSlide}>
-                         <p className='font-semibold border-b-4 border-black'>others  </p>
+                         <p className='font-semibold border-b-4 border-black'>Search your city  <i class="fi fi-rr-search m-1"></i></p>
+                        
                          <span className='text-sm text-gray-400 line-clamp-1 '>{myAdress}</span>
-                         <FontAwesomeIcon className='text-2xl ' icon={faCaretDown}  />
+                          
                     </div>
            </div> 
                 <div className='hidden md:flex items-center  gap-3 md:gap-14'>
@@ -157,7 +168,7 @@ function Head() {
                                {   data.name=='Login'? <div onClick={handleLogin} >
                                     <div className='flex justify-center items-center gap-1 cursor-pointer' key={index}>
                                    
-                                       {userData?<img className='h-4 rounded=3xl'  src={`${userData.photo}`} />:<i class="fi fi-ss-user text-gray-600"></i>}
+                                       {userData?<img className='h-4 rounded-3xl'  src={`${userData.photo}`} />:<i class="fi fi-ss-user text-gray-600"></i>}
                                        
                                        <p className=' font-medium text-gray-500 font-size-6'>{data.name}</p>
                                       { data.name=='Cart' && <p>{cartData.length}</p> }
@@ -205,5 +216,4 @@ function Head() {
   </>
   )
 }
-
 export default Head
